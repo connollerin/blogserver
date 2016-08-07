@@ -1,8 +1,18 @@
-// import Post from '../models/post_model';
+import Post from '../models/post_model';
 
 export const createPost = (req, res) => {
-  res.send('post should be created here');
+  const post = new Post();
+  post.title = req.body.title;
+
+  post.save()
+  .then(result => {
+    res.json({ message: 'Post created!' });
+  })
+  .catch(error => {
+    res.json({ error });
+  });
 };
+
 export const getPosts = (req, res) => {
   res.send('posts should be returned');
 };
