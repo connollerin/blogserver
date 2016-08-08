@@ -3,7 +3,8 @@ import Post from '../models/post_model';
 export const createPost = (req, res) => {
   const post = new Post();
   post.title = req.body.title;
-
+  post.tags = req.body.tags;
+  post.id = req.body.id;
   post.save()
   .then(result => {
     res.json({ message: 'Post created!' });
@@ -13,15 +14,45 @@ export const createPost = (req, res) => {
   });
 };
 
+// this cleans the posts because we use id instead of dangling _id
+// and we purposefully don't return content here either
+// const cleanPosts = (posts) => {
+//   return posts.map(post => {
+//     return { id: post._id, title: post.title, tags: post.tags };
+//   });
+// };
+
 export const getPosts = (req, res) => {
-  res.send('posts should be returned');
+// can use cleanPosts later
+  Post.find().exec((error, posts) => {
+    res.json(posts.map(post => {
+      return { id: post._id, title: post.title, tags: post.tags }; // instead of separate function
+    }));
+  });
 };
+
 export const getPost = (req, res) => {
-  res.send('single post looked up');
+  Post.find({ _id: req.params.id }).exec((error, posts) => { // do I need to use findOne?
+    const post = posts[0];
+    res.json({ id: post._id, title: post.title, tags: post.tags, content: post.content });
+  });
 };
+
 export const deletePost = (req, res) => {
-  res.send('delete a post here');
+  Post.remove({ _id: req.params.id }, (error, posts) => {
+    if (error === null) {
+      res.json({ message: 'Sucessfully deleted!' });
+    } else {
+      res.json({ message: 'error deleting post' });
+    }
+  });
 };
 export const updatePost = (req, res) => {
-  res.send('update a post here');
+  Post.update({ _id: req.params.id }, { title: req.body.title, tags: req.body.tags, content: req.body.content }, {}, (error, posts) => {
+    if (error === null) {
+      res.json({ message: 'Sucessfully updated!' });
+    } else {
+      res.json({ message: 'error updating post' });
+    }
+  });
 };
