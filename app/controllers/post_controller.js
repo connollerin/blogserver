@@ -15,17 +15,9 @@ export const createPost = (req, res) => {
   });
 };
 
-// this cleans the posts because we use id instead of dangling _id
-// and we purposefully don't return content here either
-// const cleanPosts = (posts) => {
-//   return posts.map(post => {
-//     return { id: post._id, title: post.title, tags: post.tags };
-//   });
-// };
-
 export const getPosts = (req, res) => {
 // can use cleanPosts later
-  Post.find().exec((error, posts) => {
+  Post.find().sort('-created_at').exec((error, posts) => {
     res.json(posts.map(post => {
       return { id: post._id, title: post.title, tags: post.tags }; // instead of separate function
     }));

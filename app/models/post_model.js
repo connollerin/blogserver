@@ -5,6 +5,7 @@ const PostSchema = new Schema({
   title: String,
   tags: String,
   content: String,
+  created_at: { type: Date, default: Date.now },
 });
 
 // create model class
