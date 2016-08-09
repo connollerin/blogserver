@@ -4,6 +4,7 @@ export const createPost = (req, res) => {
   const post = new Post();
   post.title = req.body.title;
   post.tags = req.body.tags;
+  post.content = req.body.content;
   post.id = req.body.id;
   post.save()
   .then(result => {
