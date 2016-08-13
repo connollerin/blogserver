@@ -34,18 +34,18 @@ UserSchema.pre('save', function beforeyYourModelSave(next) {
       user.password = hash;
       return next();
     });
-    return next(); // why do we need this??
+    // return next(); // why do we need this??
   });
 
   // when done run the next callback with no arguments
   // call next with an error if you encounter one
-  return next();
+  // return next();
 });
 
 UserSchema.methods.comparePassword = function comparePassword(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) { return callback(err); }
-    return callback(null, isMatch); // is it ok to return this??
+    callback(null, isMatch); // is it ok to return this??
   });
 };
 

@@ -46,5 +46,5 @@ export const signup = (req, res, next) => {
   .catch(error => {
     res.json({ message: 'Error when looking up user' });
   });
-  return 'success'; // for eslint--is this bad?
+  // return 'success'; // for eslint--is this bad?
 };
