@@ -1,4 +1,4 @@
-import dotenv from '../.env';
+import dotenv from 'dotenv';
 dotenv.config({ silent: true });
 
 export default {
