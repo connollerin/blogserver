@@ -1,6 +1,6 @@
 import jwt from 'jwt-simple';
 import User from '../models/user_model';
-import config from '../config.js'; // is the config file right??
+import config from '../config'; // is the config file right??
 
 // encodes a new token for a user object
 function tokenForUser(user) {
