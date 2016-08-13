@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
+import dotenv from '../.env';
 dotenv.config({ silent: true });
 
 export default {
-  secret: process.env.API_SECRET,
+  API_SECRET: process.env.API_SECRET,
 };

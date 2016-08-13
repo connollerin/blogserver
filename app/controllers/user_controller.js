@@ -5,7 +5,7 @@ import config from '../config'; // is the config file right??
 // encodes a new token for a user object
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.API_SECRET);
 }
 
 export const signin = (req, res, next) => {
