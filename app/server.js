@@ -8,7 +8,7 @@ import apiRouter from './router';
 const app = express();
 
 // DB Setup
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/blog';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://heroku_wrwmmr1d:fm3r0mt4pt6otf27na8hc0203b@ds153735.mlab.com:53735/heroku_wrwmmr1d';
 mongoose.connect(mongoURI);
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
