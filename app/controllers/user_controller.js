@@ -17,6 +17,7 @@ export const signup = (req, res, next) => {
   const password = req.body.password;
   const authorname = req.body.authorname;
 
+
   if (!email || !password) {
     return res.status(422).send('You must provide email and password');
   }
@@ -36,6 +37,8 @@ export const signup = (req, res, next) => {
       user.email = email;
       user.password = password;
       user.authorname = authorname;
+      console.log(authorname);
+      console.log('hi');
       user.save()
       .then(
         res.send({ token: tokenForUser(user), id: user._id }) // is this correct
