@@ -6,7 +6,7 @@ export const createPost = (req, res) => {
   post.tags = req.body.tags;
   post.content = req.body.content;
   post.id = req.body.id;
-  post.authorname = req.user._id; // figure out what to do here
+  post.authorname = req.user.authorname; // figure out what to do here
   post.save()
   .then(result => {
     res.json({ message: 'Post created!' });

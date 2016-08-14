@@ -6,7 +6,7 @@ const PostSchema = new Schema({
   tags: String,
   content: String,
   created_at: { type: Date, default: Date.now },
-  authorname: { type: Schema.Types.ObjectId, ref: 'User' },
+  authorname: { type: String, ref: 'User' },
 });
 
 // create model class
