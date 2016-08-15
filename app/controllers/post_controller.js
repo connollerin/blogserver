@@ -42,7 +42,7 @@ export const deletePost = (req, res) => {
   });
 };
 export const updatePost = (req, res) => {
-  Post.update({ _id: req.params.id }, { title: req.body.title, tags: req.body.tags, content: req.body.content, authorname: req.body.authorname }, {}, (error, posts) => {
+  Post.update({ _id: req.params.id }, { title: req.body.title, tags: req.body.tags, content: req.body.content, authorname: req.user.authorname }, {}, (error, posts) => {
     if (error === null) {
       res.json({ message: 'Sucessfully updated!' });
     } else {
